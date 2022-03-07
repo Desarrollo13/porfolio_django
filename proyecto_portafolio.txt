@@ -1,0 +1,59 @@
+Proyecto Django 
+1-creo dos aplicaciones
+1.front-end porfolio
+1.2 administrador
+1.3 blog
+comando para crear una aplicacion en django:
+python manage.py startapp blog
+2-Agrego mi dos app creadas en django
+2.1 accedo al settings y agrego las dos app:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog',
+    'portafolio',
+]
+3-Vamos a comenzar por lo mas basico vamos a crear los modelos:
+3.1# vamos a crear los modelos para mostrar mis proyectos
+4-Vamos a ejcutar las migrationes
+4.1 python manage.py makemigrations
+4.2 vamos a ejecutar las tablas:
+4.3 python manage.py migrate
+5-Vamos a crear un Super Usuario:
+5.1-python manage.py createsuperuser
+6.voy registrar el modelo que yo crie
+
+from django.contrib import admin
+from .models import Project
+
+# Register your models here.
+admin.site.register(Project)
+
+7.Vamos a configurar la carpeta de las imagenes para todo el proyecto:
+STATIC_URL = 'static/'
+MEDIA_ROOT=BASE_DIR / 'media'
+MEDIA_URL='/public/'
+8-configuramos la url del settings para que visualize el imagen
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+9-vamos crear un vista 
+creo una carpeta template
+home.html
+9.1 voy a views 
+def home():
+ return render(request, home.html)
+llegue 48 minuto
